@@ -1,3 +1,5 @@
+**English** · [Русский](README.ru.md)
+
 # Agentic market-research pipeline
 
 Turns one line of text — "a local dog-walking service, Telegram WebApp" — into a
