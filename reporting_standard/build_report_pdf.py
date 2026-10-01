@@ -15,7 +15,7 @@ import re
 import sys
 
 from reportlab.lib.colors import HexColor
-from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT
+from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.pdfmetrics import stringWidth
@@ -69,11 +69,11 @@ def build_styles():
     S["title"] = style("title", 22, 27, C_TITLE, "DV-B", spaceAfter=10)
     S["subtitle"] = style("subtitle", 12, 16, C_SUB, "DV-B", spaceAfter=14)
     S["meta"] = style("meta", 9.5, 14, spaceAfter=2)
-    S["intro"] = style("intro", 9, 13.3, align=TA_JUSTIFY, spaceBefore=10, spaceAfter=6)
+    S["intro"] = style("intro", 9, 13.3, align=TA_LEFT, spaceBefore=10, spaceAfter=6)
     S["h1"] = style("h1", 15.2, 19, C_TITLE, "DV-B", spaceBefore=14, spaceAfter=8)
     S["h2"] = style("h2", 11.5, 15, C_SUB, "DV-B", spaceBefore=10, spaceAfter=5)
     S["h3"] = style("h3", 10.2, 14, C_SUB, "DV-B", spaceBefore=8, spaceAfter=4)
-    S["body"] = style("body", 8.6, 13.3, align=TA_JUSTIFY, spaceAfter=5)
+    S["body"] = style("body", 8.6, 13.3, align=TA_LEFT, spaceAfter=5)
     S["li"] = style("li", 8.6, 13.3, align=TA_LEFT, leftIndent=14, bulletIndent=4, spaceAfter=2)
     S["cell"] = style("cell", 6.1, 8.4)
     S["cellh"] = style("cellh", 6.1, 8.4, font="DV-B")
