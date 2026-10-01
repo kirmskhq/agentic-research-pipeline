@@ -172,6 +172,22 @@ def make_table(rows):
     return [t, Spacer(1, 8)]
 
 
+def wrap_code(lines):
+    """Переносит слишком длинные строки формул с отступом под текстом после «—»."""
+    import textwrap
+    limit = int((TEXT_W - 12) / stringWidth("M", "DV-M", 7.4))
+    out = []
+    for line in lines:
+        if len(line) <= limit:
+            out.append(line)
+            continue
+        pos = line.find("— ")
+        indent = " " * (pos + 2 if 0 <= pos < limit // 2 else 4)
+        out.extend(textwrap.wrap(line, width=limit, subsequent_indent=indent,
+                                 break_long_words=False, break_on_hyphens=False))
+    return out
+
+
 def parse(md):
     lines = md.splitlines()
     flow, title_page = [], True
@@ -203,7 +219,7 @@ def parse(md):
             while i < len(lines) and not lines[i].strip().startswith("```"):
                 buf.append(lines[i])
                 i += 1
-            flow.append(Preformatted("\n".join(buf), S["code"]))
+            flow.append(Preformatted("\n".join(wrap_code(buf)), S["code"]))
             i += 1
             continue
         if not s:
