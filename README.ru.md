@@ -117,6 +117,19 @@ docker build -t research-pipeline:latest .
 качества русского языка и хостинга внутри страны); для OpenAI, DeepSeek напрямую, OpenRouter
 или локального vLLM достаточно задать `LLM_BASE_URL` и `LLM_MODEL`.
 
+## Стандарт отчётности и пример заказа
+
+В `reporting_standard/` лежит ручная методика, с которой сверяется автоматический конвейер:
+`00_master_methodology.md` (источники, типизация утверждений, экономика, приёмка),
+`build_report_pdf.py` (markdown → клиентский PDF), `prompt_for_new_report.md` и шаблоны CSV.
+`reports/2026-10-01_gostevye-planshety-dlya-oteley/` — готовый заказ по этой методике:
+исходный запрос, факт-лист, реестр источников, внутренний QA, клиентский текст, PDF и письмо.
+
+```bash
+pip install reportlab
+python reporting_standard/build_report_pdf.py final_client.md final_client.pdf --author "..."
+```
+
 ## Тесты
 
 ```bash

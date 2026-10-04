@@ -117,6 +117,19 @@ Defaults point at Yandex AI Studio with DeepSeek V3.2 (that is what production u
 Russian-language quality and domestic hosting); set `LLM_BASE_URL` and `LLM_MODEL` for OpenAI,
 DeepSeek direct, OpenRouter, or a local vLLM.
 
+## Reporting standard and worked example
+
+`reporting_standard/` holds the manual methodology the automated pipeline is measured against:
+`00_master_methodology.md` (sourcing, claim typing, economics, acceptance checks),
+`build_report_pdf.py` (markdown → client PDF), `prompt_for_new_report.md` and CSV templates.
+`reports/2026-10-01_gostevye-planshety-dlya-oteley/` is a finished order produced under it:
+source query, fact ledger, source register, internal QA, client text, PDF and cover letter.
+
+```bash
+pip install reportlab
+python reporting_standard/build_report_pdf.py final_client.md final_client.pdf --author "..."
+```
+
 ## Tests
 
 ```bash
