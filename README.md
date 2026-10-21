@@ -1,5 +1,7 @@
 **English** · [Русский](README.ru.md)
 
+[![tests](https://github.com/kirmskhq/agentic-research-pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/kirmskhq/agentic-research-pipeline/actions/workflows/tests.yml)
+
 # Agentic market-research pipeline
 
 Turns one line of text — "a local dog-walking service, Telegram WebApp" — into a
@@ -122,6 +124,8 @@ DeepSeek direct, OpenRouter, or a local vLLM.
 ```bash
 python tests/test_pipeline.py
 ```
+
+The same suite runs in GitHub Actions on every push and pull request.
 
 Six control-flow cases run offline — no API key, no network, no LLM — by substituting scripted
 critic verdicts:
