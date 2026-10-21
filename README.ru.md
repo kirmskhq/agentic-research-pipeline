@@ -1,5 +1,7 @@
 [English](README.md) · **Русский**
 
+[![tests](https://github.com/kirmskhq/agentic-research-pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/kirmskhq/agentic-research-pipeline/actions/workflows/tests.yml)
+
 # Конвейер рыночных исследований с самопроверкой
 
 Превращает одну строку текста — «локальный сервис выгула собак, Telegram WebApp» — в отчёт
@@ -122,6 +124,8 @@ docker build -t research-pipeline:latest .
 ```bash
 python tests/test_pipeline.py
 ```
+
+Эти же тесты запускаются в GitHub Actions на каждый push и pull request.
 
 Шесть сценариев прогоняются офлайн — без ключа, без сети, без обращения к модели — за счёт
 подставных вердиктов критика:
