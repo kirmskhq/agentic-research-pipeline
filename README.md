@@ -1,6 +1,8 @@
 **English** · [Русский](README.ru.md)
 
 [![tests](https://github.com/kirmskhq/agentic-research-pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/kirmskhq/agentic-research-pipeline/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 
 # Agentic market-research pipeline
 
@@ -34,28 +36,24 @@ A real run, with the editor's notes, is in [`examples/dog-walking/`](examples/do
 
 ## Pipeline
 
-```
-brief ──> outline ──> search phrase ──> web search (3 queries × 4 results, sections 2–5)
-                                              │
-                                              ▼
-                                  6 sections written in parallel
-                                              │
-             ┌────────────────────────────────▼────────────────────────────────┐
-             │  per-section critic loop  (max 3 rewrites, each one re-checked)  │
-             │                                                                 │
-             │   critic(section) ──> ok ──────────────> section leaves the loop │
-             │        │                                                        │
-             │        └─> fix + its own search queries                          │
-             │                  │                                              │
-             │                  ├─> run those queries (budgeted)                │
-             │                  └─> rewrite ONLY this section ──> re-critique   │
-             └─────────────────────────────────────────────────────────────────┘
-                                              │
-   assemble (footnotes renumbered) ──> grammar ──> cross-section audit ──> URL + grounding checks
-                                              │
-                                              ▼
-              report.md for the client  +  review.md / verdict.json for the editor
-                     SHIP = nothing flagged · HOLD = read this one closely
+```mermaid
+flowchart TD
+    subgraph S1 ["1 · Draft"]
+        direction LR
+        A["Brief:<br/>one line of text"] --> B["Outline and web search<br/>3 queries × 4 results"] --> C["6 sections<br/>written in parallel"]
+    end
+    subgraph S2 ["2 · Critic loop, per section, max 3 rewrites"]
+        direction LR
+        E{"Critic"} -- "fix + its own<br/>search queries" --> F["Re-search and rewrite<br/>this section only"]
+        F -. "re-check" .-> E
+    end
+    subgraph S3 ["3 · Checks and output"]
+        direction LR
+        H["Assemble, proofread,<br/>cross-section audit,<br/>URL and grounding checks"] --> I["report.md<br/>for the client"]
+        H --> J["review.md + verdict.json<br/>for the editor: SHIP or HOLD"]
+    end
+    S1 --> S2
+    S2 -- "ok, or rewrites used up (flagged)" --> S3
 ```
 
 ## The three things worth looking at
